@@ -13,7 +13,6 @@ class: center, middle
 
 #### Presented by: McCoy!
 
-
 ◊; --- is a separator which indicates a new slide should begin.
 ---
 
