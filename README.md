@@ -18,6 +18,19 @@ These capabilities are provided using Racket + Pollen, see [the source folder](/
 
 The Racket/Pollen expansion to `*.html` occurs before the Remark.js parser operates -- allowing programmable presentations built on top of Remark.
 
+### Dependencies
+
+```
+racket
+pollen
+To use LaTeX Pollen markup -- a working LaTeX distro on PATH.
+To use GraphViz Pollen markup -- a working GraphViz distro on PATH.
+```
+
+If you read the code, you'll see that custom markup rendering invokes `pdflatex`, or `dot` (for graphs, for example). These commands basically require access to the binaries.
+
+If you'd like to include your own custom rendering for other software, you might follow the `dot` example in `pollen/src`.
+
 ---
 
 ## Usage
