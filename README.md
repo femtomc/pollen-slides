@@ -34,8 +34,6 @@ If you read the code, you'll see that custom markup rendering invokes `pdflatex`
 
 If you'd like to include your own custom rendering for other software, you might follow the `dot` example in `pollen/src`.
 
----
-
 ## Usage
 
 The `pollen` sub-directory contains the configuration for Pollen, the Racket shims for LaTeX, MathJax, etc. When developing a slideshow, you'll develop in this directory -- by modifying `index.html.pm`. Pollen will expand this file to `index.html`.
