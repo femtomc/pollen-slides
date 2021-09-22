@@ -10,4 +10,6 @@ Provides a convenient meta-language including:
 2. Compile custom GraphViz graphs and embed them in the presentation.
 3. Inline and equation rendering using MathJax.
 
+These capabilities are provided using Racket + Pollen, see [the source folder](/src) and [pollen.rkt](pollen.rkt).
+
 **Note**: the fonts are not free! Please see [Matthew Butterick's typography](https://mbtype.com/).
