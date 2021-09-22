@@ -93,7 +93,37 @@ Denotational semantics of probabilistic programming languages has been a hot top
 
 I think the key insight driving this interest is the fact that the category of measures `Meas` _is not Cartesian closed_!
 
-Without proof, the basic fact is that the set of measurable functions from sets A to B with measurable structure cannot be given a measurable structure. In other words, the set of measurable functions from A to B is not an object in `Meas`.
+---
+
+### Cartesian closed categories
+
+Cartesian closedness is a property of categories - if a category has this property, it can be used to model (denotationally) higher-order semantics of programming languages.
+
+The technical definition is:
+
+The commutative diagram is:
+
+In a moment, we'll understand this intuitively.
+
+* Further: [(John Baez) CCCs and the <mathjax>$\lambda$</mathjax>-calculus](https://golem.ph.utexas.edu/category/2006/08/cartesian_closed_categories_an_1.html)
+
+---
+
+.cols[
+.thirty[### Back to higher-order probability]
+
+.sixty[
+
+______
+
+So, because formalization of probability theory have traditionally used `Meas` - we'd really like to use `Meas` to model higher-order probability.
+
+But `Meas` is not Cartesian closed...
+
+Without proof, the kernel is that the set of measurable functions from sets A to B with measurable structure cannot be given a measurable structure. In other words, the set of measurable functions from A to B is not an object in `Meas`.
+
+______
+]]
 
 ---
 
@@ -113,7 +143,7 @@ A key concept here is the notion of "internal language" of a category. For `Set`
 
 ______
 
-Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be?
+Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be (think about the types)?
 
 ```haskell
 data Type = Float | Int | (Type, Type) | Type + Type | Type -&gt; Type
@@ -147,6 +177,8 @@ The approach taken by the previously listed papers is to study the category of _
 So, for any partition of <mathjax>$\mathbb{R} = \cup_{i\in\mathbb{N}} S_i$</mathjax> with <mathjax>$S_i$</mathjax> Borel, and <mathjax>$\{\alpha_i \in M_X\}_{i\in\mathbb{N}^\prime}$</mathjax>, then the piecewise function <mathjax>$\beta(x) = \alpha_i(x)$</mathjax> when <mathjax>$x \in S_i$</mathjax> is in the space <mathjax>$M_X$</mathjax>.</li></ol></div>
 
 ______
+
+I'd like to try and extract some intuition here:
 
 ---
 

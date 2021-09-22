@@ -91,7 +91,37 @@ Denotational semantics of probabilistic programming languages has been a hot top
 
 I think the key insight driving this interest is the fact that the category of measures `Meas` _is not Cartesian closed_! 
 
-Without proof, the basic fact is that the set of measurable functions from sets A to B with measurable structure cannot be given a measurable structure. In other words, the set of measurable functions from A to B is not an object in `Meas`.
+---
+
+### Cartesian closed categories
+
+Cartesian closedness is a property of categories - if a category has this property, it can be used to model (denotationally) higher-order semantics of programming languages.
+
+The technical definition is:
+
+The commutative diagram is:
+
+In a moment, we'll understand this intuitively.
+
+* Further: [(John Baez) CCCs and the ◊${\lambda}-calculus](https://golem.ph.utexas.edu/category/2006/08/cartesian_closed_categories_an_1.html)
+
+---
+
+.cols[
+.thirty[### Back to higher-order probability]
+
+.sixty[
+
+______
+
+So, because formalization of probability theory have traditionally used `Meas` - we'd really like to use `Meas` to model higher-order probability.
+
+But `Meas` is not Cartesian closed...
+
+Without proof, the kernel is that the set of measurable functions from sets A to B with measurable structure cannot be given a measurable structure. In other words, the set of measurable functions from A to B is not an object in `Meas`.
+
+______
+]]
 
 ---
 
@@ -117,7 +147,7 @@ A key concept here is the notion of "internal language" of a category. For `Set`
 
 ______
 
-Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be?
+Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be (think about the types)?
 
 ◊; Of course, Remark.js has nice code highlighting.
 ```haskell
@@ -161,6 +191,8 @@ A quasi-Borel space ◊${X} consists of an underlying set ◊${X} and a set of f
 }
 
 ______
+
+I'd like to try and extract some intuition here:
 
 ---
 

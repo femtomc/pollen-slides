@@ -40,7 +40,7 @@ The `pollen` sub-directory contains the configuration for Pollen, the Racket shi
 
 To support interactive development, use `raco pollen start` in the `pollen` sub-directory. This will start a local webserver which can be used to view your presentation.
 
-Using the `build.sh` script is a convenient way to build a new project, moving the finishing static HTML slideshow into the `/docs` sub-directory.
+Using the `build.sh` script is a convenient way to build the slides, moving the finishing static HTML slideshow into the `/docs` sub-directory.
 
 The repo uses the `/docs` sub-directory to host an example.
 
