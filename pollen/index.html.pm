@@ -113,8 +113,7 @@ en->ep;
 ]
 .sixty[
 A key concept here is the notion of "internal language" of a category. For `Set` (and, more generally, for any _Cartesian closed category_) - there's a simply typed lambda calculus which models the category, this calculus is called the internal language.
-]
-]
+]]
 
 ______
 
@@ -124,6 +123,7 @@ Just to convince yourself of this, consider that `Set` has a natural notion of p
 ```haskell
 data Type = Float | Int | (Type, Type) | Type + Type | Type -> Type
 ```
+
 --- 
 
 ## Summary of affairs
@@ -143,7 +143,8 @@ The approach taken by the previously listed papers is to study the category of _
 
 ◊; Below, we see usage of the MathJax syntax -- a single $ indicates
 ◊; inline math.
-
+◊; By far I think this is the messiest part of the slide deck - would be good
+◊; to abstract.
 ◊div[#:class "definition" #:text "quasi-Borel space"]{
 A quasi-Borel space ◊${X} consists of an underlying set ◊${X} and a set of functions ◊${M_X \subseteq (\mathbb{R} \rightarrow X)} satisfying:
 

@@ -109,8 +109,7 @@ ______
 ]
 .sixty[
 A key concept here is the notion of "internal language" of a category. For `Set` (and, more generally, for any _Cartesian closed category_) - there's a simply typed lambda calculus which models the category, this calculus is called the internal language.
-]
-]
+]]
 
 ______
 
@@ -119,6 +118,7 @@ Just to convince yourself of this, consider that `Set` has a natural notion of p
 ```haskell
 data Type = Float | Int | (Type, Type) | Type + Type | Type -&gt; Type
 ```
+
 ---
 
 ## Summary of affairs
@@ -135,7 +135,6 @@ The approach taken by the previously listed papers is to study the category of _
 * [The semantic structure of quasi-Borel spaces](https://pps2018.luddy.indiana.edu/files/2018/01/pps18-qbs-semantic-structure.pdf)
 
 ---
-
 
 <div class="definition" text="quasi-Borel space">A quasi-Borel space <mathjax>$X$</mathjax> consists of an underlying set <mathjax>$X$</mathjax> and a set of functions <mathjax>$M_X \subseteq (\mathbb{R} \rightarrow X)$</mathjax> satisfying:
 
