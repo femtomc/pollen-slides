@@ -1,5 +1,9 @@
 # Pollen-based presentation template
 
+[Example slideshow -- the slideshow is a program!](https://femtomc.github.io/pollen-presentation-template/index.html)
+
+---
+
 This is a convenient bundle of presentation capabilities built on top of (Markdown parsing to presentations) provided by [Remark.js](https://remarkjs.com/#1).
 
 Everything is organized through [Pollen](https://docs.racket-lang.org/pollen/)
