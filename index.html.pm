@@ -201,5 +201,3 @@ data Term =   -- Variables, builtins, and application.
 ```
 
 }
-
-}
