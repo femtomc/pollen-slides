@@ -17,3 +17,5 @@ The Racket/Pollen expansion to `*.html` occurs before the Remark.js parser opera
 ---
 
 **Note**: the fonts are not free! Please see [Matthew Butterick's typography](https://mbtype.com/).
+
+**Note**: Ignore the Languages content representation on GitHub -- it doesn't know how to handle Pollen markup.
