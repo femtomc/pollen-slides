@@ -1,0 +1,7 @@
+compiled
+latex
+_minted*
+images
+*.css
+*.html
+*.log
