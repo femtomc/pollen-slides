@@ -15,7 +15,7 @@ Provides a convenient meta-language including:
 
 1. Compile custom LaTeX inline and embed them in the presentation.
 2. Compile custom GraphViz graphs and embed them in the presentation.
-3. Inline and equation rendering using MathJax.
+3. Inline and block equation rendering using MathJax.
 
 These capabilities are provided using Racket + Pollen, see [the source folder](/src) and [pollen.rkt](pollen.rkt).
 
