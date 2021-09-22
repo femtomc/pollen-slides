@@ -1,6 +1,9 @@
-# Pollen-based presentation template
+<div align="center">
+
+<h1><code>pollen-slides</code></h1>
 
 [Example slideshow -- the slideshow is a program!](https://femtomc.github.io/pollen-slides/index.html)
+</div>
 
 ---
 
