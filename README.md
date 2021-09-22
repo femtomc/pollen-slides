@@ -1,6 +1,6 @@
 # Pollen-based presentation template
 
-[Example slideshow -- the slideshow is a program!](https://femtomc.github.io/pollen-presentation-template/index.html)
+[Example slideshow -- the slideshow is a program!](https://femtomc.github.io/pollen-slides/index.html)
 
 ---
 
