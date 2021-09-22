@@ -6,7 +6,7 @@
 
 This is a convenient bundle of presentation capabilities built on top of (Markdown parsing to presentations) provided by [Remark.js](https://remarkjs.com/#1).
 
-Everything is organized through [Pollen](https://docs.racket-lang.org/pollen/)
+Everything is organized through [Pollen](https://docs.racket-lang.org/pollen/).
 
 Provides a convenient meta-language including:
 
@@ -48,3 +48,13 @@ The repo uses the `/docs` sub-directory to host an example.
 **Note**: the fonts are not free! Please see [Matthew Butterick's typography](https://mbtype.com/).
 
 **Note**: Ignore the Languages content representation on GitHub -- it doesn't know how to handle Pollen markup.
+
+---
+
+<div align="center">
+  <sub>
+  <a href="https://femtomc.github.io/">
+  Built with ❤️ by <strong>femtomc</strong>
+  </a>
+  </sub>
+</div>
