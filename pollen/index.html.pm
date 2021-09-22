@@ -190,21 +190,17 @@ data T = BT | M[T] | T -> T | T x T | List(T)
 data Term =   -- Variables, builtins, and application.
                 x | c | f | Term Term
 
-              -- A product constructor.
-              | <Term, Term> 
-
-              -- Record type field projection.
-              | Project(i, Term)
-
+              | <Term, Term> -- A product constructor.
+              | Project(i, Term) -- Record type field projection.
+              
               -- Pattern matching.
               | case Term with [match(i, x_i) => Term] over i
 
               -- Recursive function definitions.
               | letrec f x = Term
 
-              -- Monadic return + bind.
-              | return Term | bind Term Term
-
+              | return Term | bind Term Term -- Monadic return + bind.
+              
               -- Query computes a posterior from a prior + likelihood.
               | query Term => Term
 
