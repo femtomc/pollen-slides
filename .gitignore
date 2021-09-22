@@ -5,3 +5,4 @@ images
 *.css
 *.html
 *.log
+!index.html
