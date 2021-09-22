@@ -1,8 +1,9 @@
 compiled
-latex
 _minted*
-images
-*.css
 *.html
+*.pdf
+*.aux
 *.log
+*.tex
+*.dot
 !index.html
