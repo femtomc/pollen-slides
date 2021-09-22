@@ -2,23 +2,25 @@
 
 ◊(define-meta template "template.html")
 
-◊textarea[#:id "source"]{
+◊; Here's where the slide syntax starts.
 
 class: center, middle
 
 ### Formal verification of higher-order probabilistic programs
 
+◊; Pollen supports insertion of raw HTML elements using the lozenge ◊.
 ◊img[#:style "display:block;margin-left:auto;margin-right:auto;max-width:300px;" #:src "assets/img/bayes_cartoon.png"]
 
 #### Presented by: McCoy!
 
 
+◊; --- is a separator which indicates a new slide should begin.
 ---
 
+◊; This is a small Remark.js feature -- you can use . syntax to specify blocks.
+◊; So below is a convenient hack to put in columns.
 .cols[
-.twenty[
-## Agenda
-]
+.twenty[## Agenda]
 .eighty[
 ◊img[#:style "display:block;margin-left:auto;margin-right:auto;max-width:300px;" #:src "assets/img/buzz_measures.jpg"]
 
@@ -49,6 +51,10 @@ ______
 One example representation: Gen's generative function interface
 ]
 .eighty[
+
+◊; Here's a fun command -- you can write raw LaTeX and the system
+◊; will invoke pdflatex to compile to .png and embed.
+
 ◊latex[#:caption "A generative function."]{
 ◊document-class{preview}
 \usepackage[outputdir=latex]{minted}
@@ -65,10 +71,9 @@ One example representation: Gen's generative function interface
 end
 \end{minted}
 \end{document}
-}
-]
-]
+}]]
 
+◊; ______ indicates a horizontal line break - can use any number > 3 of _.
 ______
 
 A _generative function_ is a type of computational object which supports a well-defined interface.
@@ -99,6 +104,7 @@ ______
 
 .cols[
 .thirty[
+◊; The dot command allows usage of the dot graph language inline.
 ◊dot{
 ep[label="Category theory"];
 en[label="Lambda calculi"]
@@ -115,6 +121,7 @@ ______
 
 Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be?
 
+◊; Of course, Remark.js has nice code highlighting.
 ```haskell
 data Type = Float | Int | (Type, Type) | Type + Type | Type -> Type
 ```
@@ -135,9 +142,13 @@ The approach taken by the previously listed papers is to study the category of _
 
 ---
 
+◊; Below, we see usage of the MathJax syntax -- a single $ indicates
+◊; inline math.
+
 ◊div[#:class "definition" #:text "quasi-Borel space"]{
 A quasi-Borel space ◊${X} consists of an underlying set ◊${X} and a set of functions ◊${M_X \subseteq (\mathbb{R} \rightarrow X)} satisfying:
 
+◊; Again, here I'm inserting raw HTML - an <ol> followed by <li>s.
 ◊ol{
     ◊li{◊${M_X} contains all constant functions.}
 
@@ -165,6 +176,8 @@ From this contribution statement, we should essentially be expecting two things:
 
 ---
 
+◊; This is a special div I setup for definitions.
+◊; Should likely be put into its own lozenge syntax.
 ◊div[#:class "definition" #:text "HPPROG"]{A higher-order language for probabilistic programming.}
 
 ```haskell
@@ -199,5 +212,3 @@ data Term =   -- Variables, builtins, and application.
               -- Primitives representing basic distributions.
               | Uniform(Term, Term) | Bern(Term) | Gauss(Term, Term)
 ```
-
-}

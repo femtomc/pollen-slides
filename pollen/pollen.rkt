@@ -57,7 +57,7 @@ The pollen/pygments module provides a `highlight` tag function that performs syn
 
 (define exclusion-mark-attr '(decode "exclude"))
 (define (root . items)
-  (decode `(decoded-root ,@items)
+  (decode `(decoded-root (textarea ((id "source")) ,@items))
           #:exclude-tags '(style script pre)
           #:exclude-attrs (list exclusion-mark-attr)))
 
