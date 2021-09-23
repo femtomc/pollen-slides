@@ -33,7 +33,7 @@ class: center, middle
 
 5. Why is this useful?
 
-* The goal is not to prove everything rigorously - but to support your own understanding of the story (and encourage your own exploration).
+◊${\Rightarrow} The goal is not to prove everything rigorously - but to support your own understanding of the story (and encourage your own exploration).
 
 ]]
 
@@ -41,7 +41,7 @@ class: center, middle
 
 ## Probabilistic programming
 
-* Understanding computable representions of operations on measures.
+◊${\Rightarrow} Understanding computable representions of operations on measures.
 
 ______
 

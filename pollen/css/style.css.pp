@@ -10,7 +10,7 @@
 
 blockquote {
     font-style: italic;
-    }
+}
 
 ◊; Basically, to allow for multi-column slides.
 .cols {
@@ -50,23 +50,27 @@ img.latex {
 figcaption.latex {
     text-align: center;
     font-style: italic;
-    font-size: 22px;
+    font-size: 16px;
+    margin-top:0.5rem;
     margin-bottom:0.5rem;
 }
 
 .remark-slide-content {
-    font-size: 22px;
+    font-size: 19px;
 }
 
 .remark-code, .remark-inline-code { 
     font-family: julia_mono; 
-    font-size: 17px;
+    font-size: 21px;
+    background: #F0F0F0;
 }
 
-body { font-family: concourse_3; }
+body { 
+    font-family: 'Droid Serif'; 
+}
 
 h1, h2, h3 {
-    font-family: concourse_4;
+    font-family: 'Yanone Kaffeesatz';
     font-weight: normal;
 }
 
@@ -82,31 +86,35 @@ li::marker {
 
 li {
     margin-top: 0.7rem;
-    }
+}
 
 .theorem {
-display: block;
-         font-style: italic;
+    display: block;
+    font-style: italic;
 }
+
 .theorem:before {
-content: "Theorem. ";
-         font-weight: bold;
-         font-style: normal;
+    content: "Theorem. ";
+    font-weight: bold;
+    font-style: normal;
 }
+
 .theorem[text]:before {
-content: "Theorem (" attr(text) ") ";
+    content: "Theorem (" attr(text) ") ";
 }
 
 .definition {
-display: block;
-         font-style: italic;
+    display: block;
+    font-style: italic;
 }
+
 .definition:before {
-content: "Definition. ";
-         font-weight: bold;
-         font-style: normal;
+    content: "Definition. ";
+    font-weight: bold;
+    font-style: normal;
 }
+
 .definition[text]:before {
-content: "Definition (" attr(text) ") ";
+    content: "Definition (" attr(text) ") ";
 }
 
