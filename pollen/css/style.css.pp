@@ -59,9 +59,15 @@ figcaption.latex {
     font-size: 19px;
 }
 
-.remark-code, .remark-inline-code { 
+.remark-code { 
     font-family: julia_mono; 
-    font-size: 21px;
+    font-size: 17px;
+    background: #F0F0F0;
+}
+
+.remark-inline-code { 
+    font-family: julia_mono; 
+    font-size: 17px;
     background: #F0F0F0;
 }
 
