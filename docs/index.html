@@ -65,6 +65,39 @@ ______
 
 ---
 
+.cols[
+.thirty[
+## Bayesian inference
+]
+
+.sixty[
+______
+
+
+<mathjax>\begin{equation}\ P(A | B) = \frac{\underbrace{P(B | A)}_{\text{likelihood}} \ \underbrace{P(A)}_{\text{prior}}}{\underbrace{P(B)}_{\text{evidence}}} \ \text{(Bayes' Theorem)}\end{equation}</mathjax>
+
+______
+
+]
+]
+
+An agent starts out with a distribution <mathjax>$P(A)$</mathjax> over quantities in the world <mathjax>$A$</mathjax>.
+
+These quantities may be correlated with other quantities <mathjax>$B$</mathjax> - this is communicated by the likelihood <mathjax>$P(B | A)$</mathjax>.
+
+When observing an instance of <mathjax>$B$</mathjax>, the correlation should allow us to update our beliefs about the possibilities for <mathjax>$A$</mathjax>.
+
+<mathjax>\begin{equation}\rightarrow \underbrace{P(A | B)}_{\text{posterior}}\end{equation}</mathjax>
+
+This is the fundamental process of Bayesian inference.
+
+______
+
+
+To formalize this process using mathematics, we must turn to measure theory - because distributions are measures, and a conditional distribution <mathjax>$P(A | B)$</mathjax> is a measure theoretic object called a [Radon-Nikodym derivative](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem).
+
+---
+
 ## Probabilistic programming
 
 <mathjax>$\Rightarrow$</mathjax> Understanding computable representions of operations on measures.
