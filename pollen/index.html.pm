@@ -19,9 +19,10 @@ class: center, middle
 ◊; This is a small Remark.js feature -- you can use . syntax to specify blocks.
 ◊; So below is a convenient hack to put in columns.
 .cols[
-.twenty[## Agenda]
-.eighty[
-◊img[#:style "display:block;margin-left:auto;margin-right:auto;max-width:300px;" #:src "assets/img/buzz_measures.jpg"]
+.twenty[## Agenda
+]
+.sixty[
+______
 
 1. Probabilistic programming - all about measures
 
@@ -34,6 +35,10 @@ class: center, middle
 5. Why is this useful?
 
 ◊${\Rightarrow} The goal is not to prove everything rigorously - but to support your own understanding of the story (and encourage your own exploration).
+
+______
+
+◊img[#:style "display:block;margin-left:auto;margin-right:auto;max-width:350px;" #:src "assets/img/buzz_measures.jpg"]
 
 ]]
 
