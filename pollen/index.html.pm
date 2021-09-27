@@ -30,11 +30,11 @@ ______
 
 3. What does a "higher-order" language with measures look like?
 
-4. Return to paper - the story
+4. What does verification look like here?
 
 5. Why is this useful?
 
-◊${\Rightarrow} The goal is not to prove everything rigorously - but to support your own understanding of the story (and encourage your own exploration).
+◊${\rightarrow} The goal is not to prove everything rigorously - but to support your own understanding of the story (and encourage your own exploration).
 
 ______
 
@@ -62,7 +62,7 @@ ______
 ]
 ]
 
-An agent starts out with a distribution ◊${P(A)} over quantities in the world ◊${A}. 
+A sentient being starts out with a distribution ◊${P(A)} over quantities in the world ◊${A}. 
 
 These quantities may be correlated with other quantities ◊${B} - this is communicated by the likelihood ◊${P(B | A)}. 
 
@@ -81,7 +81,7 @@ To formalize this process using mathematics, we must turn to measure theory - be
 
 ## Probabilistic programming
 
-◊${\Rightarrow} Understanding computable representions of operations on measures.
+◊${\rightarrow} Understanding computable representions of operations on measures.
 
 ______
 
@@ -117,6 +117,21 @@ ______
 
 A _generative function_ is a type of computational object which supports a well-defined interface.
 
+.cols[
+.fifty[
+◊dot{
+rankdir=LR;
+label="Can you write the CPD?"
+A[label="is outlier"];
+B[label="y"];
+A -> B;
+}
+]
+.fifty[
+How do we handle the fact that the likelihood _is a program_?
+]
+]
+
 ---
 
 ## Background
@@ -129,50 +144,100 @@ Denotational semantics of probabilistic programming languages has been a hot top
 
 3. [A Convenient Category for Higher-Order Probability Theory](https://arxiv.org/pdf/1701.02547.pdf)
 
-I think the key insight driving this interest is the fact that the category of measures `Meas` _is not Cartesian closed_! 
+______
 
----
+.cols[
+.thirty[
+<center><h4>Key question (?)</h4></center>
+]
+.sixty[
+What does "higher-order" mean in the context of programs which denote measures and operations on measures?
+]
+]
 
-### Cartesian closed categories
-
-Cartesian closedness is a property of categories - if a category has this property, it can be used to model (denotationally) higher-order semantics of programming languages.
-
-The technical definition is:
-
-The commutative diagram is:
-
-In a moment, we'll understand this intuitively.
-
-* Further: [(John Baez) CCCs and the ◊${\lambda}-calculus](https://golem.ph.utexas.edu/category/2006/08/cartesian_closed_categories_an_1.html)
+______
 
 ---
 
 .cols[
-.thirty[### Back to higher-order probability]
-
+.thirty[
+## Cats 
+]
 .sixty[
 
 ______
 
-So, because formalization of probability theory have traditionally used `Meas` - we'd really like to use `Meas` to model higher-order probability.
+Unavoidable: we need a bit of _category theory_ for this discussion.
 
-But `Meas` is not Cartesian closed...
-
-Without proof, the kernel is that the set of measurable functions from sets A to B with measurable structure cannot be given a measurable structure. In other words, the set of measurable functions from A to B is not an object in `Meas`.
+◊dot{
+label="A category?";
+rankdir=LR;
+A -> A;
+A -> B;
+A -> C;
+B -> A;
+B -> B;
+B -> C;
+C -> A;
+C -> B;
+C -> C;
+}
 
 ______
-]]
+]
+]
+
+Informal: a _category_ is a collection of objects with arrows between them. The arrows satisfy nice properties:
+
+1. If an arrow goes into another arrow, the composite arrow is in the category.
+2. Arrows are fully associative.
+3. Each object has an identity arrow.
+
+______
+
+In an attempt to reach a state of child-like wonder, math/CS people draw diagrams and say "hmm, does this pattern exist in _insert mathematical space_?"
+
+Such a pattern is typically called a _universal construction_.
 
 ---
 
-Compare this to `Set` - the typical category for higher-order functional programming.
+Generally, computer scientists concern themselves with _Cartesian closed categories_.
 
-* `Set` is Cartesian closed - the set of functions from A to B is also an object in `Set`.
+We typically like to think that our programs denote objects + transformations in some mathematical space. This gets tricky when the transformations themselves can be objects.
+
+______
+
+
+.cols[
+.thirty[
+### Cartesian closed categories
+]
+.sixty[
+_Cartesian closedness_ is a property of categories.
+
+The technical definition is:
+
+1. Must contain the terminal object.
+2. Must contain a product object for any pair of objects.
+3. **Must contain an exponential for any pair of objects**.
+]
+]
+
+______
+
+If a category has this property, it can be used to model (denotationally) higher-order semantics of programming languages.
+
+In a moment, we'll understand this intuitively.
+
+◊${\rightarrow} Further: [(John Baez) CCCs and the ◊${\lambda}-calculus](https://golem.ph.utexas.edu/category/2006/08/cartesian_closed_categories_an_1.html)
+
+---
 
 ______
 
 .cols[
 .thirty[
+<center><h4>Internal languages</h4></center>
 ◊; The dot command allows usage of the dot graph language inline.
 ◊dot{
 ep[label="Category theory"];
@@ -182,25 +247,150 @@ en->ep;
 }
 ]
 .sixty[
-A key concept here is the notion of "internal language" of a category. For `Set` (and, more generally, for any _Cartesian closed category_) - there's a simply typed lambda calculus which models the category, this calculus is called the internal language.
+A key concept is the notion of _internal language_ (or _internal logic_) of a category. For `Set` (and, more generally, for any _Cartesian closed category_) - there exist simply typed lambda calculi which model the category.
+
+When used in this context, these calculi are colloquially called internal languages.
+
+Also: [internal logic in nLab](https://ncatlab.org/nlab/show/internal+logic)
 ]]
 
 ______
 
-Just to convince yourself of this, consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be (think about the types)?
+Consider that `Set` has a natural notion of product and co-product. Imagine what the simply typed lambda calculi equivalent would be (think about the types)?
 
 ◊; Of course, Remark.js has nice code highlighting.
 ```haskell
-data Type = Float | Int | (Type, Type) | Type + Type | Type -> Type
+data Type = BaseType | (Type, Type) | Type + Type | Type -> Type
 ```
+
+.cols[
+.fifty[
+◊dot{
+rankdir=LR;
+label="Product";
+cp -> a [label="p'"];
+cp -> c [label="m"];
+cp -> b [label="q'"];
+c -> a [label="p"];
+c -> b [label="q"];
+}
+]
+.fifty[
+◊dot{
+rankdir=LR;
+label="Coproduct";
+a -> c;
+b -> c;
+c -> cp;
+a -> cp;
+b -> cp;
+}
+]
+]
 
 --- 
 
-## Summary of affairs
+What about the "function type" `Type -> Type`?
 
-The key is: `Meas` is not Cartesian closed, so (as computer scientists) we are unable a simple typed lambda calculi representation of `Meas` as a means of formalizing higher-order probabilistic languages.
+------
 
-* Now, a natural solution presents itself: let's find a Cartesian closed category which has suitable properties to represent higher-order languages with measures.
+.cols[
+.fifty[
+◊dot{
+rankdir=LR;
+A -> B;
+}
+]
+.fifty[
+In category theory, a mapping between two objects is called a _morphism_.
+]
+]
+
+Categories are closed under composition of morphisms, and:
+1. All morphisms are fully associative.
+2. For each object in the category, there is an identity morphism.
+
+______
+
+Thinking in types: (informally) morphisms are sort of like _an instance_ of a function type `A -> B`. 
+
+In `Set`, for example, there are many ways to fill the type `Int -> Int` with a total function. Each such total function is a morphism from the object `Int` to `Int`.
+
+Ergo, a function type `A -> B` is actually _a set of morphisms_ - compactly called the `HomSet(A, B)`.
+
+______
+
+<center style="margin-top:2rem;">Of course, shouldn't a function type be an object in <code>Set</code>? Yes, dear reader!</center>
+
+---
+
+What defines a function? Category theory: application!
+
+______
+
+.cols[
+.thirty[
+#### Function object
+]
+.sixty[
+Ingredients for a _function object_ from `A` to `B`:
+
+1. An object (which we'll call) `A => B`.
+2. A morphism `eval :: (A => B) x A -> B`.
+
+3. For any object `Z` with morphism `g :: Z x A -> B`, a unique morphism `h :: Z -> (A => B)` that factors `g` through `eval`:
+
+<center>◊${g = \text{eval} \ \circ (\text{h} \times id)}</center>
+
+]
+]
+
+______
+
+Remember: the way to think about this sort of construction is as a pattern which may or may not "match" to the category in question.
+
+◊${\rightarrow} **It's not important to fully understand this now.**
+
+More important: understanding that there's a way to identify categories with this object, and, even more important, a way to identify when a category contains this object as a base object in the category.
+
+---
+
+## Back to higher-order probability
+
+______
+
+So, because formalization of probability theory have traditionally used `Meas` - we'd really like to use `Meas` to model higher-order probability.
+
+But `Meas` is not Cartesian closed.
+
+The intuition here is that the set of measurable functions from measurable A to measurable B cannot be given a measurable structure. 
+
+1. In other words, function object in `Meas` is external to `Meas`. 
+
+2. In the simply typed lambda calculus description, this means we can't denote the function type `Measurable A -> Measurable B` as the function object.
+
+______
+
+<h4><center style="margin-top:2rem;margin-bottom:2rem;">Bad: we can't reason formally about programs.</center></h4>
+
+______
+
+We like formal reasoning -- it gives us confidence that our manipulations are correct by math.
+
+---
+
+## Summary
+
+The key is: `Meas` is not Cartesian closed, so (as computer scientists) we are unable to develop a simple typed lambda calculi representation of `Meas` as a means of formalizing higher-order probabilistic languages.
+
+* The full proof: [Borel Structures for Function Spaces](https://projecteuclid.org/journals/illinois-journal-of-mathematics/volume-5/issue-4/Borel-structures-for-function-spaces/10.1215/ijm/1255631584.full)
+
+______
+
+* Let's find a Cartesian closed category which has suitable properties to represent higher-order languages with measures.
+
+1. Unambiguously denote function types and higher-order functions.
+2. Theorems we prove in the category apply to programs which denote manipulations of the categorical objects.
 
 ______
 
@@ -210,6 +400,37 @@ The approach taken by the previously listed papers is to study the category of _
 * [The semantic structure of quasi-Borel spaces](https://pps2018.luddy.indiana.edu/files/2018/01/pps18-qbs-semantic-structure.pdf)
 
 ---
+
+.cols[
+.fifty[
+#### Classical probability
+
+1. We fix a measurable space ◊${(\Omega, \Sigma_\Omega)} as the primitive sample space.
+
+2. Observations derive from pairs ◊${(X, f)} where ◊${X} is a measurable space with sigma algebra ◊${(X, \Sigma_X)} and ◊${f} is measurable ◊${f: \Omega \rightarrow X}.
+
+Note: `f` is measurable if the pre-image of any set in `X` is measurable.
+]
+.fifty[
+#### Example
+
+1. ```haskell
+m :: Set{Bool x Bool} -> R
+m {} = 0.0
+m {(T, _)} = 0.2
+m {(F, _)} = 0.3
+```
+Derive the measure by `M = sum $ map m col` over collections of sets.
+
+2.  ```haskell
+f :: Bool x Bool -> Bool
+f a b = a || b
+```
+
+]
+]
+
+______
 
 ◊; Below, we see usage of the MathJax syntax -- a single $ indicates
 ◊; inline math.
@@ -230,11 +451,10 @@ A quasi-Borel space ◊${X} consists of an underlying set ◊${X} and a set of f
     }
 }
 
-______
-
-I'd like to try and extract some intuition here:
 
 ---
+
+______
 
 > In this paper, we take a step further and we develop a set of program logics, named PPV, for proving properties of programs written in an expressive probabilistic higher-order language with continuous distributions and operators for conditioning distributions by real-valued functions.
 
@@ -242,7 +462,7 @@ ______
 
 From this contribution statement, we should essentially be expecting two things:
 
-1. A simply typed lambda calculus (STLC) whose denotational semantics are given by a quasi-Borel space. This will be the base language.
+1. A simply typed lambda calculus (STLC) whose denotational semantics are given by the category of quasi-Borel spaces `QBS`. This will be the base language.
 
 2. A logic which quantizes over expressions in the STLC. This will be the system which reasons about programs in the base language.
 
@@ -280,3 +500,23 @@ data Term =   -- Variables, builtins, and application.
               -- Primitives representing basic distributions.
               | Uniform(Term, Term) | Bern(Term) | Gauss(Term, Term)
 ```
+
+---
+
+The language `HPPROG` is a typed lambda calculus with products, pattern matching, recursive function definitions, and monadic binding.
+
+1. `Product -> <Term ,Term>`
+2. `Pattern matching -> case Term with [match(i, x_i) => Term] over i`
+3. `Recursive function definitions -> letrec f x = Term`
+4. `Monadic bind -> bind Term term` with monadic type `M[T]`
+
+______
+
+◊div[#:class "definition" #:text "Monadic type"]{
+A monad is a functor from a category <code>X</code> to a category <code>Y</code>.
+}
+
+______
+
+* Handling probability with a monadic type `M[T]` is relatively standard, see: [monads of probability, measures, and valuations](https://ncatlab.org/nlab/show/monads+of+probability%2C+measures%2C+and+valuations) and [the Giry monad](https://ncatlab.org/nlab/show/Giry+monad).
+* The QBS paper develops generalizations of the Giry monad to represent the monadic `X -> QBS(X)`.
