@@ -425,44 +425,133 @@ data BT = Unit | Bool | Nat | Real | PosReal | BT x BT | List(BT)
 data T = BT | M[T] | T -&gt; T | T x T | List(T)
 
 -- A set of terms.
-data Term =   -- Variables, builtins, and application.
-                x | c | f | Term Term
+data Expr =   -- Variables, builtins, and application.
+                x | c | f | Expr Expr
 
-              | &lt;Term, Term&gt; -- A product constructor.
-              | Project(i, Term) -- Record type field projection.
+              | &lt;Expr, Expr&gt; -- A product constructor.
+              | Project(i, Expr) -- Record type field projection.
 
               -- Pattern matching.
-              | case Term with [match(i, x_i) =&gt; Term] over i
+              | case Expr with [match(i, x_i) =&gt; Expr] over i
 
               -- Recursive function definitions.
-              | letrec f x = Term
+              | letrec f x = Expr
 
-              | return Term | bind Term Term -- Monadic return + bind.
+              | return Expr | bind Expr Expr -- Monadic return + bind.
 
               -- Query computes a posterior from a prior + likelihood.
-              | query Term =&gt; Term
+              | query Expr =&gt; Expr
 
               -- Primitives representing basic distributions.
-              | Uniform(Term, Term) | Bern(Term) | Gauss(Term, Term)
+              | Uniform(Expr, Expr) | Bern(Expr) | Gauss(Expr, Expr)
 ```
 
 ---
 
 The language `HPPROG` is a typed lambda calculus with products, pattern matching, recursive function definitions, and monadic binding.
 
-1. `Product -&gt; &lt;Term ,Term&gt;`
-2. `Pattern matching -&gt; case Term with [match(i, x_i) =&gt; Term] over i`
-3. `Recursive function definitions -&gt; letrec f x = Term`
-4. `Monadic bind -&gt; bind Term term` with monadic type `M[T]`
+1. `Product -&gt; &lt;Expr ,Expr&gt;`
+2. `Pattern matching -&gt; case Expr with [match(i, x_i) =&gt; Expr] over i`
+3. `Recursive function definitions -&gt; letrec f x = Expr`
+4. `Monadic bind -&gt; bind Expr Expr` with monadic type `M[T]`
 
 ______
 
-<div class="definition" text="Monadic type">A monad is a functor from a category &lt;code&gt;X&lt;/code&gt; to a category &lt;code&gt;Y&lt;/code&gt;.</div>
+.cols[
+.thirty[
+&lt;h4&gt;&lt;center&gt;Monadic bind&lt;/center&gt;&lt;/h4&gt;
+<img class="dot" src="images/dot_g6060.png"/>
+]
+.sixty[
+A &lt;code&gt;Monad&lt;/code&gt; is a map from category to category, constrained to satisfy a certain set of laws.
+
+The monadic bind operation chains together computations in the monadic context.
+
+```haskell
+-- Here, 'M' is the monad.
+(&gt;&gt;=) :: M a -&gt; (a -&gt; M b) -&gt; M b
+```
+]
+]
 
 ______
 
 * Handling probability with a monadic type `M[T]` is relatively standard, see: [monads of probability, measures, and valuations](https://ncatlab.org/nlab/show/monads+of+probability%2C+measures%2C+and+valuations) and [the Giry monad](https://ncatlab.org/nlab/show/Giry+monad).
 * The QBS paper develops generalizations of the Giry monad to represent the monadic `X -&gt; QBS(X)`.
+
+---
+
+Monadic bind (and `return`ing an inhabitant of `T` to the monadic type `M[T]`) is key to understanding how the language can support the denotational interpretation in the category `QBS`.
+
+______
+
+A set (also: a type `T` which indicates a set) requires _more structure_ to support measurability. In classical probability, this "more structure" is:
+
+1. A <mathjax>$\sigma$</mathjax>-algebra (see: <mathjax>$\Sigma_\Omega$</mathjax> from prev. example).
+2. A measure (see: <mathjax>$M$</mathjax>) - e.g. a mapping from the algebra to positive extended reals which takes `{} -&gt; 0` and is countably additive.
+
+One way to understand the usage of monads here is allowing us to talk about computations which automatically include this "extra" structure on top of sets.
+
+______
+
+.cols[
+.thirty[
+#### Example
+]
+
+.sixty[
+```haskell
+f :: a -&gt; Maybe b
+g :: Maybe a
+c :: Maybe b = (&gt;==) g f
+```
+]]
+
+In the monadic interpretation, a monad `M` allows programmatically specifying "computational effects" which are richer than the base types (e.g. sets) allow.
+
+E.g. in the `Maybe` monad, the process is: map a computation over type `T` to a computation `Maybe T` which indicates that the computation may fail to return anything at all.
+
+---
+
+<div class="definition" text="PL">A logic for probabilistic programs.</div>
+
+```haskell
+-- A.k.a. terms.
+data ExtE = Expr
+          | E(x, ExtE, Expr(x))
+          | scale(ExtE, ExtE)
+          | normalize(ExtE)
+
+-- A.k.a formula.
+data LogF = (ExtE = ExtE)
+          | (ExtE &lt; ExtE)
+          | Top
+          | Btm
+          | LogF &amp; LogF
+          | LogF =&gt; LogF
+          | not LogF
+          | Forall(x, T, LogF)
+          | Exists(x, T, LogF)
+```
+
+---
+
+## Gaussian mean learning
+
+______
+
+Let's now examine one of the paper examples and try and put the pieces together.
+
+______
+
+```haskell
+GaussLearn =
+    \ p . letrec f(L) = case L of
+            [] -&gt; p,
+            y :: rest -&gt; query f(ls) =&gt; GPDF(y, sigma^2)
+```
+
+---
 </textarea></decoded-root>
 <script>
 var slideshow = remark.create();
