@@ -46,7 +46,7 @@ ______
 ______
 
 * How can you be sure a static tool works for all programs without a proof?
-    * Map your language to a denotational space (a mathematical space) - map transformations described by your language to reasoning principles in the denotational space.
+    * Map your language to a denotational space (a mathematical space) - apply reasoning principles in the denotational space.
 
 ** An (unfortunate) theme: difficult-to-describe features (automatic differentiation, probabilistic programming) map to somewhat complex categories (differentiable manifolds, quasi-Borel spaces).**
 
@@ -319,6 +319,7 @@ ______
 <center><h4>Internal languages</h4></center>
 ◊; The dot command allows usage of the dot graph language inline.
 ◊dot{
+label="\nCurry-Howard-Lambek isomorphism";
 ep[label="Category theory"];
 en[label="STLC"]
 ep->en;
@@ -331,7 +332,10 @@ A key concept is the notion of _internal language_ (or _internal logic_) of a ca
 When used in this context, these calculi are colloquially called internal languages.
 
 Also: [internal logic in nLab](https://ncatlab.org/nlab/show/internal+logic)
+
+Also also: [Physics, Topology, Computation and Logic: A Rosetta Stone](https://arxiv.org/abs/0903.0340)
 ]]
+
 
 ______
 
